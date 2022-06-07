@@ -146,12 +146,10 @@ resource "aws_security_group" "webserver" {
 }
 
 resource "aws_instance" "AmazonLinux" {
-    for_each = var.availability_zones
     ami = "${lookup(var.AMI1, "AmazonLinux")}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = aws_subnet.subnet_public[each.value].id
-    # Security Group
+    subnet_id = aws_subnet.subnet_public[count.index].id    # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
     key_name = var.web_key_name
@@ -159,12 +157,10 @@ resource "aws_instance" "AmazonLinux" {
 }
 
 resource "aws_instance" "Ubuntu" {
-    for_each = var.availability_zones
     ami = "${lookup(var.AMI1, "Ubuntu")}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = aws_subnet.subnet_public[each.value].id
-    # Security Group
+    subnet_id = aws_subnet.subnet_public[count.index].id    # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
     key_name = var.web_key_name
