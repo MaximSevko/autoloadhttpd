@@ -71,7 +71,7 @@ resource "aws_route_table_association" "rta-public-subnet"{
     for_each = var.availability_zones
 
 #    subnet_id = aws_subnet.subnet_public[count.index].id
-    subnet_id = aws_subnet.subnet_public[each.value].id
+    subnet_id = aws_subnet.subnet_public[each.key].id
     route_table_id = "${aws_route_table.public-rt.id}"
 }
 
