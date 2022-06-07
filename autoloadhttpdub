@@ -8,4 +8,4 @@ sudo systemctl start apache2
 
 sudosystemctl enable apache2
 
-echo "Hello world!" > sudo tie /var/www/html/index.html
+sudo echo "Hello world!" > sudo tie /var/www/html/index.html

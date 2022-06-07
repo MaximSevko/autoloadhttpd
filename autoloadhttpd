@@ -6,4 +6,4 @@ sudo systemctl start httpd
 
 sudosystemctl enable httpd
 
-echo "Hello world!" > sudo tie /var/www/html/index.html
+sudo echo "Hello world!" > sudo tie /var/www/html/index.html
