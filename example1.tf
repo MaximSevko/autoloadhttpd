@@ -150,7 +150,7 @@ resource "aws_security_group" "webserver" {
 }
 
 resource "aws_instance" "AmazonLinux" {
-    ami = "${lookup(var.AMI1, AmazonLinuxArm)}"
+    ami = "${lookup(var.AMI1, "AmazonLinuxArm")}"
     instance_type = var.instance_type
     # VPC
     subnet_id = "${aws_subnet.subnet_public.id}"
@@ -162,7 +162,7 @@ resource "aws_instance" "AmazonLinux" {
 }
 
 resource "aws_instance" "Ubuntu" {
-    ami = "${lookup(var.AMI1, Ubuntu)}"
+    ami = "${lookup(var.AMI1, "Ubuntu")}"
     instance_type = var.instance_type
     # VPC
     subnet_id = "${aws_subnet.subnet_public.id}"
