@@ -146,6 +146,8 @@ resource "aws_security_group" "webserver" {
 }
 
 resource "aws_instance" "AmazonLinux" {
+    for_each = var.availability_zones
+
     ami = "${lookup(var.AMI1, "AmazonLinux")}"
     instance_type = var.instance_type
     # VPC
@@ -158,6 +160,7 @@ resource "aws_instance" "AmazonLinux" {
 }
 
 resource "aws_instance" "Ubuntu" {
+    for_each = var.availability_zones
     ami = "${lookup(var.AMI1, "Ubuntu")}"
     instance_type = var.instance_type
     # VPC
