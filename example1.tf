@@ -9,17 +9,14 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "subnet_public" {
-    //for_each = var.availability_zones
+    for_each = var.availability_zones
 
     vpc_id = "${aws_vpc.main.id}"
 
-    availability_zone = "eu-central-1a"
 
-    //availability_zone = each.key
-    //cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, each.value)
-    //ipv6_cidr_block   = cidrsubnet(aws_vpc.main.ipv6_cidr_block, 8, each.value + 6)
-
-    cidr_block = "10.9.1.0/24"
+    availability_zone = each.key
+    cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, each.value)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.main.ipv6_cidr_block, 8, each.value + 6)
 
 
  
@@ -27,8 +24,7 @@ resource "aws_subnet" "subnet_public" {
     assign_ipv6_address_on_creation = true
 
     tags = {
-        //Name = "subnet-public-${each.value}"
-        Name = "subnet-public-1"
+        Name = "subnet-public-${each.value}"
 
     }
 }
