@@ -145,7 +145,7 @@ resource "aws_instance" "AmazonLinux" {
     ami = "${lookup(var.AMI1, var.AmazonLinuxArm)}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = "${aws_subnet.subnet-public-1.id}"
+    subnet_id = "${aws_subnet.subnet-public.id}"
     # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
