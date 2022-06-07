@@ -71,7 +71,7 @@ resource "aws_route_table_association" "rta-public-subnet"{
     for_each = var.availability_zones
 
 #    subnet_id = aws_subnet.subnet_public[count.index].id
-    subnet_id = aws_subnet.subnet_public[each.key].id
+    subnet_id = aws_subnet.subnet_public[each.value].id
     route_table_id = "${aws_route_table.public-rt.id}"
 }
 
@@ -146,10 +146,10 @@ resource "aws_security_group" "webserver" {
 }
 
 resource "aws_instance" "AmazonLinux" {
-    ami = "${lookup(var.AMI1, "AmazonLinuxArm")}"
+    ami = "${lookup(var.AMI1, "AmazonLinux")}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = "${aws_subnet.subnet_public.id}"
+    subnet_id = "${aws_subnet.subnet_public[each.value].id}"
     # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
@@ -161,7 +161,7 @@ resource "aws_instance" "Ubuntu" {
     ami = "${lookup(var.AMI1, "Ubuntu")}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = "${aws_subnet.subnet_public.id}"
+    subnet_id = "${aws_subnet.subnet_public[each.value].id}"
     # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
