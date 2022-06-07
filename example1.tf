@@ -157,6 +157,10 @@ resource "aws_instance" "AmazonLinux" {
     # the Public SSH key
     key_name = var.web_key_name
     user_data = file("autoloadhttpd")
+    
+    tags = {
+        Name = "AmazonLinux"
+    }
 }
 
 resource "aws_instance" "Ubuntu" {
@@ -170,5 +174,9 @@ resource "aws_instance" "Ubuntu" {
     # the Public SSH key
     key_name = var.web_key_name
         user_data = file("autoloadhttpdub")
+
+    tags = {
+        Name = "Ubuntu"
+    }
 
 }
