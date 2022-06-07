@@ -1,0 +1,11 @@
+#! /bin/bash
+
+sudo apt install apache2
+
+sudo ufw app list
+
+sudo systemctl start apache2
+
+sudosystemctl enable apache2
+
+echo "Hello world!" > sudo tie /var/www/html/index.html
