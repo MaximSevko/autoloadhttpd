@@ -149,7 +149,8 @@ resource "aws_instance" "AmazonLinux" {
     ami = "${lookup(var.AMI1, "AmazonLinux")}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = aws_subnet.subnet_public.id    # Security Group
+    subnet_id = aws_subnet.subnet_public[each.key]
+    # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
     key_name = var.web_key_name
@@ -160,7 +161,8 @@ resource "aws_instance" "Ubuntu" {
     ami = "${lookup(var.AMI1, "Ubuntu")}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = aws_subnet.subnet_public.id    # Security Group
+    subnet_id = aws_subnet.subnet_public[each.key]
+    # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
     key_name = var.web_key_name
