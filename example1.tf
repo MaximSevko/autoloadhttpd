@@ -13,7 +13,7 @@ resource "aws_subnet" "subnet_public" {
 
     vpc_id = "${aws_vpc.main.id}"
 
-    availability_zone = eu-central-1a
+    availability_zone = "eu-central-1a"
 
     //availability_zone = each.key
     //cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, each.value)
@@ -153,7 +153,7 @@ resource "aws_instance" "AmazonLinux" {
     ami = "${lookup(var.AMI1, var.AmazonLinuxArm)}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = "${aws_subnet.subnet-public.id}"
+    subnet_id = "${aws_subnet.subnet_public.id}"
     # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
@@ -165,7 +165,7 @@ resource "aws_instance" "Ubuntu" {
     ami = "${lookup(var.AMI1, var.Ubuntu)}"
     instance_type = var.instance_type
     # VPC
-    subnet_id = "${aws_subnet.subnet-public.id}"
+    subnet_id = "${aws_subnet.subnet_public.id}"
     # Security Group
     vpc_security_group_ids = ["${aws_security_group.webserver.id}"]
     # the Public SSH key
