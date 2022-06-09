@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "eu-central-1"
+  region = var.AWS_Region
 }
 
 
@@ -10,6 +10,7 @@ resource "aws_vpc" "main" {
 
   tags = {
     Name = "main"
+    owner = "Maxim"
   }
 }
 
@@ -30,7 +31,7 @@ resource "aws_subnet" "subnet_public" {
 
     tags = {
         Name = "subnet-public-${each.value}"
-
+            owner = "Maxim"
     }
 }
 
@@ -46,6 +47,7 @@ resource "aws_subnet" "subnet_private" {
 
     tags = {
         Name = "subnet-private-${each.value + 10}"
+        owner = "Maxim"
     }
 }
 
@@ -53,6 +55,7 @@ resource "aws_internet_gateway" "igw" {
     vpc_id = "${aws_vpc.main.id}"
     tags = {
         Name = "igw"
+        owner = "Maxim"
     }
 }
 
@@ -67,7 +70,8 @@ resource "aws_route_table" "public-rt" {
     }
     
     tags = {
-        Name = "public-rt"
+        Name = "public-rt"    
+        owner = "Maxim"
     }
 }
 
@@ -147,10 +151,11 @@ resource "aws_security_group" "webserver" {
     }
     tags = {
         Name = "webserver"
+        owner = "Maxim"
     }
 }
 
-resource "aws_instance" "AmazonLinux" {
+resource "aws_instance" "amazonlinux" {
     #for_each = var.availability_zones
 
     ami = "${lookup(var.AMI1, "AmazonLinux")}"
@@ -165,10 +170,11 @@ resource "aws_instance" "AmazonLinux" {
     
     tags = {
         Name = "AmazonLinux"
+        owner = "Maxim"
     }
 }
 
-resource "aws_instance" "Ubuntu" {
+resource "aws_instance" "ubuntu" {
     #for_each = var.availability_zones
     ami = "${lookup(var.AMI1, "Ubuntu")}"
     instance_type = var.instance_type
@@ -182,6 +188,7 @@ resource "aws_instance" "Ubuntu" {
 
     tags = {
         Name = "Ubuntu"
+        owner = "Maxim"
     }
 
 }
