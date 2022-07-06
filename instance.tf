@@ -11,7 +11,7 @@ resource "aws_instance" "amazonlinux" {
     # the Public SSH key
     key_name = var.web_key_name
     user_data = file("autoload")
-    iam_instance_profile = aws_iam_role.test_role
+    #iam_instance_profile = aws_iam_role.test_role
     tags = {
         Name = "AmazonLinux"
         owner = "Maxim"
