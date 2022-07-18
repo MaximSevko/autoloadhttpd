@@ -1,0 +1,8 @@
+
+#resource "aws_cloudwatch_log_group" "MaximLogs" {
+#  name = "MaximLogs"
+#
+#  tags = {
+#    Owner = "Maxim"
+#  }
+#}

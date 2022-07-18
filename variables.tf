@@ -7,7 +7,7 @@ variable "AMI1" {
 }
 
 variable "AWS_Region" {
-    default = "eu-central-1"
+    default = "eu-north-1"
 }
 
 variable "instance_type" {
@@ -20,12 +20,13 @@ variable "vpc_cidr_block" {
 
 variable "availability_zones" { 
     default = {
-        eu-central-1a = 11
-        eu-central-1b = 12
-        eu-central-1c = 13
+        eu-north-1a = 11
+        eu-north-1b = 12
+        eu-north-1c = 13
     }
 }
 
 variable "web_key_name" {
     default = "maxkey"
 }
+ 
